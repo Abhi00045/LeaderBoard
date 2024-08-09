@@ -35,13 +35,13 @@ AddPlayer.addEventListener("click",()=>{
         <p class="country-name">${country.value}</p>
         </div>
         <div>
-        <button class="text-base bg-blue-600  w-[80px] p-1 rounded-3xl text-center border-x-blue-50 border-2 text-slate-50  hover:bg-blue-800">Delete</button>
+        <button id="delete" class="text-base bg-blue-600  w-[80px] p-1 rounded-3xl text-center border-x-blue-50 border-2 text-slate-50  hover:bg-blue-800">Delete</button>
         </div>
         <div>
-        <button class="text-base bg-blue-600  w-[50px] p-1 rounded-3xl text-center border-x-blue-50 border-2 text-slate-50  hover:bg-blue-800">+5</button>
+        <button id="update" class="text-base bg-blue-600  w-[50px] p-1 rounded-3xl text-center border-x-blue-50 border-2 text-slate-50  hover:bg-blue-800">+5</button>
         </div>
         <div>
-        <button class="text-base bg-blue-600  w-[50px] p-1 rounded-3xl text-center border-x-blue-50 border-2 text-slate-50  hover:bg-blue-800 ">-5</button>
+        <button id="decrease" class="text-base bg-blue-600  w-[50px] p-1 rounded-3xl text-center border-x-blue-50 border-2 text-slate-50  hover:bg-blue-800 ">-5</button>
         </div>
         `; 
         leaderBoard.appendChild(newPlayer);
@@ -49,6 +49,19 @@ AddPlayer.addEventListener("click",()=>{
         score.value = "";
         country.value = ""; 
 
+        let deleteBtn = newPlayer.querySelector("#delete");
+        let updateBtn = newPlayer.querySelector("#update");
+        let decreaseBtn = newPlayer.querySelector("#decrease");
+
+        deleteBtn.addEventListener("click",()=>{
+            newPlayer.remove();
+        })
+        updateBtn.addEventListener("click",()=>{
+            player.score =+ parseInt(player.score) + 5
+        })
+        decreaseBtn.addEventListener("click",()=>{
+            player.score =+ parseInt(score.value) - 5
+        })
     }
 })
 
