@@ -27,9 +27,11 @@ AddPlayer.addEventListener("click",()=>{
         newPlayer.style.borderRadius = "5px";
         newPlayer.classList.add("bg-blue-600");
 
+        let scoreMarks = score.value;
+
         newPlayer.innerHTML = `<div class="flex justify-evenly gap-4">
         <p class="name"> ${name.value}</p>
-        <p class="score"> score :${score.value}</p>
+        <p class="scored" id="scored"> score :${scoreMarks}</p>
         </div>
         <div class="country">
         <p class="country-name">${country.value}</p>
@@ -45,23 +47,31 @@ AddPlayer.addEventListener("click",()=>{
         </div>
         `; 
         leaderBoard.appendChild(newPlayer);
-        name.value = "";
-        score.value = "";
-        country.value = ""; 
 
         let deleteBtn = newPlayer.querySelector("#delete");
         let updateBtn = newPlayer.querySelector("#update");
         let decreaseBtn = newPlayer.querySelector("#decrease");
-
+        let scoreValue = parseInt(scoreMarks);
+        let scored = document.getElementById("scored");
+        // console.log(scored);
+        
         deleteBtn.addEventListener("click",()=>{
             newPlayer.remove();
         })
         updateBtn.addEventListener("click",()=>{
-            player.score =+ parseInt(player.score) + 5
+           scoreValue+=5;
+           scoreMarks=scoreValue;
+           scored.innerHTML = `score : ${scoreMarks}` 
         })
         decreaseBtn.addEventListener("click",()=>{
-            player.score =+ parseInt(score.value) - 5
+            scoreValue -= 5;
+            scored.innerHTML = `score : ${scoreValue}`;
         })
+
+
+        name.value = "";
+        score.value = "";
+        country.value = ""; 
     }
 })
 
